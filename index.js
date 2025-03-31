@@ -137,3 +137,43 @@ function gameLoop() {
     showEndButton("Nice! You won!");
   }
 }
+
+// === Touch Gesture Controls for Mobile ===
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+});
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+
+    // Only respond to significant movements
+    if (Math.abs(dx) > Math.abs(dy)) {
+      // horizontal swipe
+      if (dx > 20 && currentDirection.x !== -1) {
+        nextDirection = { x: 1, y: 0 }; // right
+      } else if (dx < -20 && currentDirection.x !== 1) {
+        nextDirection = { x: -1, y: 0 }; // left
+      }
+    } else {
+      // vertical swipe
+      if (dy > 20 && currentDirection.y !== -1) {
+        nextDirection = { x: 0, y: 1 }; // down
+      } else if (dy < -20 && currentDirection.y !== 1) {
+        nextDirection = { x: 0, y: -1 }; // up
+      }
+    }
+
+    // Prevent default scrolling behavior while swiping
+    e.preventDefault();
+  },
+  { passive: false }
+);
