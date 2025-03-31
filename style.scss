@@ -16,8 +16,8 @@ body {
     .canvas {
       position: absolute;
       background-color: grey;
-      width: 600px;
-      height: 400px;
+      width: 440px;
+      height: 300px;
       @media (max-width: 600px) {
         width: 300px;
         height: 200px;
@@ -27,14 +27,14 @@ body {
     }
     .button {
       position: absolute;
-      width: 600px;
+      width: 440px;
       height: 40px;
       @media (max-width: 600px) {
         width: 300px;
         height: 20px;
         top: 100px;
       }
-      top: 220px;
+      top: 130px;
       transform: translate(-50%, -50%);
       visibility: hidden;
       border: none;
